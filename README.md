@@ -2,9 +2,9 @@
 This is a DevOps Assignment-II for Introduction To DevOps.
 
 # DevOps-Assigment-CICD
-Introduction to DevOps Assignment.
+Introduction to DevOps Assignment II. 
 
-Purpose of this repo is to demonstrate the usage of Github Version Control, Jenkins CICD, Docker, DockerHub, Terraform, Kubernetes Platform and Unit Test using PyTest Python Framework.
+Purpose of this repo is to demonstrate the usage of Jenkins CICD, Docker, DockerHub, Terraform, Kubernetes Platform and Unit Test using PyTest Python Framework.
 
 This is a Flask app integrated with GitHub Actions CICD for ACEest Gym Fitness.
 
