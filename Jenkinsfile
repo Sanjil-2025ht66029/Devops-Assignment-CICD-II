@@ -7,16 +7,16 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
     }
     stages {
-        // stage("Create an EKS Cluster") {
-        //     steps {
-        //         script {
-        //             dir('terraform') {
-        //                 sh "terraform init"
-        //                 sh "terraform apply -auto-approve"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('checkout') {
+            steps {
+                 script{
+                        dir("terraform")
+                        {
+                            git "https://github.com/Sanjil-2025ht66029/Devops-Assignment-CICD-II.git"
+                    }
+                }
+            }
+        }
         stage("Deploy Myapp to EKS") {
             steps {
                 script {
