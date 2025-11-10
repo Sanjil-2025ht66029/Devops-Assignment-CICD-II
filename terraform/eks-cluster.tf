@@ -1,26 +1,30 @@
 module "eks" {
-    source  = "terraform-aws-modules/eks/aws"
-    version = "~> 19.0"
-    cluster_name = "myapp-eks-cluster"
-    cluster_version = "1.24"
+ source  = "terraform-aws-modules/eks/aws"
+ version = "~> 20.31"
 
-    cluster_endpoint_public_access  = true
+ cluster_name    = "myapp-cluster"
+ cluster_version = "1.31"
 
-    vpc_id = module.myapp-vpc.vpc_id
-    subnet_ids = module.myapp-vpc.private_subnets
+ # Optional
+ cluster_endpoint_public_access = true
 
-    tags = {
-        environment = "development"
-        application = "myapp"
-    }
+ # Optional: Adds the current caller identity as an administrator via cluster access entry
+ enable_cluster_creator_admin_permissions = true
 
-    eks_managed_node_groups = {
-        dev = {
-            min_size = 1
-            max_size = 3
-            desired_size = 2
+ eks_managed_node_groups = {
+   myapp-node = {
+     instance_types = ["t3.micro"]
+     min_size       = 1
+     max_size       = 3
+     desired_size   = 2
+   }
+ }
 
-            instance_types = ["t2.small"]
-        }
-    }
+ vpc_id     = aws_vpc.main.id
+ subnet_ids = aws_subnet.public_subnet.*.id
+
+ tags = {
+   Environment = "dev"
+   Terraform   = "true"
+ }
 }
